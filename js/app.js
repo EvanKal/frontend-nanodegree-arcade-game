@@ -11,6 +11,8 @@ var Enemy = function({x=-91, y=405}={}) {
     this.widthSpace;
     this.heightSpace;
     this.moveIncrementer = 0;
+    this.gotRandom = false;
+
 };
 
 // Update the enemy's position, required method for game
@@ -19,8 +21,19 @@ Enemy.prototype.update = function(dt) {
 
   this.widthSpace= this.x + 101;
 
-  this.moveIncrementer = 100*dt;
+  // this.moveIncrementer = 100*dt;
   // console.log(this.moveIncrementer);
+  // console.log(this.moveIncrementer);
+  if (!this.gotRandom) {
+
+  function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+};
+
+  let randomNumber = getRandomArbitrary(1, 10);
+  this.moveIncrementer = randomNumber;
+  this.gotRandom = true;
+}
 
 
   if (this.widthSpace<505) {
@@ -28,6 +41,7 @@ Enemy.prototype.update = function(dt) {
       // console.log(moveIncrementer);
     } else {
       this.x = -91;
+      this.gotRandom = false;
       // moveIncrementer=0;
     };
     // You should multiply any movement by the dt parameter
