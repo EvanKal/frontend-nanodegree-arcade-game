@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function({x=-91, y=405}={}) {
+var Enemy = function({x=-101, y=405}={}) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -22,7 +22,7 @@ Enemy.prototype.update = function(dt) {
   this.widthSpace= this.x + 101;
 
 // This conditional is used to get a new random number that defines the
-// speed of the enemy after each run
+// speed of the enemy after each run has been completed
   if (!this.gotRandom) {
 
   function getRandomArbitrary(min, max) {
@@ -35,20 +35,21 @@ Enemy.prototype.update = function(dt) {
 };
 
 
-  if (this.widthSpace<505) {
+  if (this.widthSpace<505+171) {
       this.x = (this.x + this.moveIncrementer*dt);
 
-      if (this.y == player.y && this.widthSpace>=player.x && this.widthSpace<player.widthSpace) {
+      // This checks for collisions
+      if (this.y == player.y && (this.widthSpace-30)>=player.x && (this.widthSpace-30)<player.widthSpace) {
         player.x = 200;
         player.y = 405;
-      } else if (this.y == player.y && this.x>=player.x && this.x<player.widthSpace) {
+      } else if (this.y == player.y && (this.x+30)>=player.x && (this.x+30)<player.widthSpace) {
         player.x = 200;
         player.y = 405;
       };
 
 
     } else {
-      this.x = -91;
+      this.x = -101;
       this.gotRandom = false;
     };
     // You should multiply any movement by the dt parameter
@@ -74,7 +75,16 @@ var Player = function({x=200, y=405}={}) {
 
 Player.prototype.update = function () {
   this.widthSpace= this.x + 101;
-  this.heightSpace= this.y + 171;
+
+  // Arrow function to set "this" properly to the player
+  const resetPosition = () => {
+  this.x = 200;
+  this.y = 405;
+  }
+
+  if (this.y == -10) {
+    setTimeout(resetPosition, 100);
+  }
 };
 
 Player.prototype.render = function () {
@@ -82,7 +92,7 @@ Player.prototype.render = function () {
 };
 
 Player.prototype.handleInput = function (key) {
-  if (key == "up" && this.y>73) {
+  if (key == "up" && this.y>-10) {
     this.y = this.y - 83;
     console.log(`${this.x}, ${this.y}`);
     }
@@ -108,10 +118,12 @@ Player.prototype.handleInput = function (key) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 const allEnemies = [
-  enemy1 = new Enemy({x:-91, y:322}),
-  enemy2 = new Enemy({x:-91, y:239}),
-  enemy3 = new Enemy({x:-91, y:156}),
-  enemy4 = new Enemy({x:-91, y:73}),
+  // enemy1 = new Enemy({y:322}),
+  // enemy2 = new Enemy({y:239}),
+  // enemy3 = new Enemy({y:156}),
+  // enemy33 = new Enemy({y:156}),
+  // enemy4 = new Enemy({y:73}),
+  // enemy44 = new Enemy({y:73}),
 ];
 const player = new Player();
 
