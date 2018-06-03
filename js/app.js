@@ -1,11 +1,15 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function({x=-91, y=405}={}) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    this.x = x;
+    this.y = y;
+    this.widthSpace;
+    this.heightSpace;
 };
 
 // Update the enemy's position, required method for game
@@ -28,10 +32,18 @@ var Player = function({x=200, y=405}={}) {
   this.sprite = 'images/char-boy.png';
   this.x = x;
   this.y = y;
+  this.widthSpace;
+  this.heightSpace;
+//   canvas.width = this.naturalWidth;
+// canvas.height = this.naturalHeight;
+  // this.width = this.naturalWidth;
+  // this.height = this.naturalHeight;
+  // console.log(`${this.naturalWidth}, ${this.naturalHeight}`);
 };
 
 Player.prototype.update = function () {
-
+  this.widthSpace= this.x + 101;
+  this.heightSpace= this.y + 171;
 };
 
 Player.prototype.render = function () {
@@ -64,7 +76,12 @@ Player.prototype.handleInput = function (key) {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-const allEnemies = [];
+const allEnemies = [
+  enemy1 = new Enemy({x:-91, y:322}),
+  enemy2 = new Enemy({x:-91, y:239}),
+  enemy3 = new Enemy({x:-91, y:156}),
+  enemy4 = new Enemy({x:-91, y:73}),
+];
 const player = new Player();
 
 
