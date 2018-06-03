@@ -21,28 +21,35 @@ Enemy.prototype.update = function(dt) {
 
   this.widthSpace= this.x + 101;
 
-  // this.moveIncrementer = 100*dt;
-  // console.log(this.moveIncrementer);
-  // console.log(this.moveIncrementer);
+// This conditional is used to get a new random number that defines the
+// speed of the enemy after each run
   if (!this.gotRandom) {
 
   function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
-};
+}
 
-  let randomNumber = getRandomArbitrary(1, 10);
+  let randomNumber = getRandomArbitrary(100, 500);
   this.moveIncrementer = randomNumber;
   this.gotRandom = true;
-}
+};
 
 
   if (this.widthSpace<505) {
-      this.x = (this.x + this.moveIncrementer);
-      // console.log(moveIncrementer);
+      this.x = (this.x + this.moveIncrementer*dt);
+
+      if (this.y == player.y && this.widthSpace>=player.x && this.widthSpace<player.widthSpace) {
+        player.x = 200;
+        player.y = 405;
+      } else if (this.y == player.y && this.x>=player.x && this.x<player.widthSpace) {
+        player.x = 200;
+        player.y = 405;
+      };
+
+
     } else {
       this.x = -91;
       this.gotRandom = false;
-      // moveIncrementer=0;
     };
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
@@ -63,11 +70,6 @@ var Player = function({x=200, y=405}={}) {
   this.y = y;
   this.widthSpace;
   this.heightSpace;
-//   canvas.width = this.naturalWidth;
-// canvas.height = this.naturalHeight;
-  // this.width = this.naturalWidth;
-  // this.height = this.naturalHeight;
-  // console.log(`${this.naturalWidth}, ${this.naturalHeight}`);
 };
 
 Player.prototype.update = function () {
@@ -107,9 +109,9 @@ Player.prototype.handleInput = function (key) {
 // Place the player object in a variable called player
 const allEnemies = [
   enemy1 = new Enemy({x:-91, y:322}),
-  // enemy2 = new Enemy({x:-91, y:239}),
-  // enemy3 = new Enemy({x:-91, y:156}),
-  // enemy4 = new Enemy({x:-91, y:73}),
+  enemy2 = new Enemy({x:-91, y:239}),
+  enemy3 = new Enemy({x:-91, y:156}),
+  enemy4 = new Enemy({x:-91, y:73}),
 ];
 const player = new Player();
 
