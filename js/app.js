@@ -15,6 +15,18 @@ var Enemy = function({x=-91, y=405}={}) {
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
+
+  this.widthSpace= this.x + 101;
+  let moveIncrementer = 0;
+  ++moveIncrementer;
+
+  if (this.widthSpace<505) {
+      this.x = (this.x + moveIncrementer);
+      // console.log(moveIncrementer);
+    } else {
+      this.x = -91;
+      moveIncrementer=0;
+    };
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -78,9 +90,9 @@ Player.prototype.handleInput = function (key) {
 // Place the player object in a variable called player
 const allEnemies = [
   enemy1 = new Enemy({x:-91, y:322}),
-  enemy2 = new Enemy({x:-91, y:239}),
-  enemy3 = new Enemy({x:-91, y:156}),
-  enemy4 = new Enemy({x:-91, y:73}),
+  // enemy2 = new Enemy({x:-91, y:239}),
+  // enemy3 = new Enemy({x:-91, y:156}),
+  // enemy4 = new Enemy({x:-91, y:73}),
 ];
 const player = new Player();
 
