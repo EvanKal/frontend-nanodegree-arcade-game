@@ -10,6 +10,7 @@ var Enemy = function({x=-91, y=405}={}) {
     this.y = y;
     this.widthSpace;
     this.heightSpace;
+    this.moveIncrementer = 0;
 };
 
 // Update the enemy's position, required method for game
@@ -17,15 +18,17 @@ var Enemy = function({x=-91, y=405}={}) {
 Enemy.prototype.update = function(dt) {
 
   this.widthSpace= this.x + 101;
-  let moveIncrementer = 0;
-  ++moveIncrementer;
+
+  this.moveIncrementer = 100*dt;
+  // console.log(this.moveIncrementer);
+
 
   if (this.widthSpace<505) {
-      this.x = (this.x + moveIncrementer);
+      this.x = (this.x + this.moveIncrementer);
       // console.log(moveIncrementer);
     } else {
       this.x = -91;
-      moveIncrementer=0;
+      // moveIncrementer=0;
     };
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
