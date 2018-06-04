@@ -1,3 +1,16 @@
 body {
     text-align: center;
 }
+
+#sideContainer {
+  position: fixed;
+  /* display: block; */
+  width: 15%;
+  height: 95%;
+  z-index: 1;
+  top: 10px;
+  left: 20px;
+  right: 0;
+  bottom: 10px;
+  background-color: rgba(0,0,0,0.5);
+}

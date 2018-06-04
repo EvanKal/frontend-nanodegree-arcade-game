@@ -39,10 +39,10 @@ Enemy.prototype.update = function(dt) {
       this.x = (this.x + this.moveIncrementer*dt);
 
       // This checks for collisions
-      if (this.y == player.y && (this.widthSpace-30)>=player.x && (this.widthSpace-30)<player.widthSpace) {
+      if (this.y == player.y && (this.widthSpace-50)>=player.x && (this.widthSpace-50)<player.widthSpace) {
         player.x = 200;
         player.y = 405;
-      } else if (this.y == player.y && (this.x+30)>=player.x && (this.x+30)<player.widthSpace) {
+      } else if (this.y == player.y && (this.x+50)>=player.x && (this.x+50)<player.widthSpace) {
         player.x = 200;
         player.y = 405;
       };
@@ -71,6 +71,8 @@ var Player = function({x=200, y=405}={}) {
   this.y = y;
   this.widthSpace;
   this.heightSpace;
+  this.numOFWins = 0;
+
 };
 
 Player.prototype.update = function () {
@@ -80,6 +82,7 @@ Player.prototype.update = function () {
   const resetPosition = () => {
   this.x = 200;
   this.y = 405;
+  ++this.numOFWins;
   }
 
   if (this.y == -10) {
@@ -118,12 +121,12 @@ Player.prototype.handleInput = function (key) {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 const allEnemies = [
-  // enemy1 = new Enemy({y:322}),
-  // enemy2 = new Enemy({y:239}),
-  // enemy3 = new Enemy({y:156}),
-  // enemy33 = new Enemy({y:156}),
-  // enemy4 = new Enemy({y:73}),
-  // enemy44 = new Enemy({y:73}),
+  enemy1 = new Enemy({y:322}),
+  enemy2 = new Enemy({y:239}),
+  enemy3 = new Enemy({y:156}),
+  enemy33 = new Enemy({y:156}),
+  enemy4 = new Enemy({y:73}),
+  enemy44 = new Enemy({y:73}),
 ];
 const player = new Player();
 
