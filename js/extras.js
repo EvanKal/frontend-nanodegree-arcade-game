@@ -10,12 +10,12 @@ function loadContainer() {
 
   let numOFWinsMessage = document.createElement("p");
   numOFWinsMessage.setAttribute("id", "numOFWinsMessage");
-  numOFWinsMessage.textContent = `${player.numOFWins} times!`;
+  numOFWinsMessage.textContent = `${player.numOFWins} consecutive times!`;
   sideContainer.appendChild(numOFWinsMessage);
 }
 
 window.addEventListener("load", loadContainer());
 
 function updateNumOfWins() {
-numOFWinsMessage.textContent = `${player.numOFWins} times!`;
+numOFWinsMessage.textContent = `${player.numOFWins} consecutive times!`;
 };

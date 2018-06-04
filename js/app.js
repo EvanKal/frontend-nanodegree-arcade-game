@@ -42,9 +42,11 @@ Enemy.prototype.update = function(dt) {
       if (this.y == player.y && (this.widthSpace-50)>=player.x && (this.widthSpace-50)<player.widthSpace) {
         player.x = 200;
         player.y = 405;
+        player.numOFWins = 0;
       } else if (this.y == player.y && (this.x+50)>=player.x && (this.x+50)<player.widthSpace) {
         player.x = 200;
         player.y = 405;
+        player.numOFWins = 0;
       };
 
 
@@ -72,7 +74,8 @@ var Player = function({x=200, y=405}={}) {
   this.widthSpace;
   this.heightSpace;
   this.numOFWins = 0;
-
+  this.previousScore = 0;
+  this.checkWin = false;
 };
 
 Player.prototype.update = function () {
@@ -82,12 +85,20 @@ Player.prototype.update = function () {
   const resetPosition = () => {
   this.x = 200;
   this.y = 405;
-  ++this.numOFWins;
+  this.previousScore = this.numOFWins;
   }
 
-  if (this.y == -10) {
-    setTimeout(resetPosition, 100);
+  const updateWin = () => {
+  if (this.numOFWins == this.previousScore) {
+    ++this.numOFWins;
   }
+}
+
+  if (this.y == -10) {
+    updateWin();
+    resetPosition();
+  }
+
 };
 
 Player.prototype.render = function () {
