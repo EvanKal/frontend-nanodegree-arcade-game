@@ -1,3 +1,4 @@
+// Creates elements and appends to body
 function loadContainer() {
   let sideContainer = document.createElement("div");
   sideContainer.setAttribute("id", "sideContainer");
@@ -22,9 +23,8 @@ function loadContainer() {
   let yayContainer = document.createElement("div");
   yayMessage.setAttribute("class", "fas fa-angle-double-up");
   yayContainer.setAttribute("id", "yayContainer");
-  // yayMessage.textContent = `Yay!`;
   yayContainer.appendChild(yayMessage);
-  yayContainer.style.display = 'none';
+  yayContainer.style.display = "none";
   sideContainer.appendChild(yayContainer);
 
   let choosePlayerMessage = document.createElement("p");
@@ -39,7 +39,6 @@ function loadContainer() {
   let option1 = document.createElement("option");
   option1.setAttribute("value", "char-boy");
   option1.setAttribute("class", "option");
-  // option1.setAttribute("selected", "selected");
   option1.textContent = `Boy`;
   dropMenu.appendChild(option1);
 
@@ -68,17 +67,18 @@ function loadContainer() {
   dropMenu.appendChild(option5);
 }
 
-window.addEventListener('DOMContentLoaded', loadContainer());
+window.addEventListener("DOMContentLoaded", loadContainer());
 let e = document.getElementById("dropMenu");
 const options = document.getElementsByClassName("option");
 const canvas = document.querySelector("canvas");
-e.addEventListener('change', checkClass);
+e.addEventListener("change", removeFocus);
 
 // Removes focus from player selector (after change)
-function checkClass(evt) {
-     evt.target.blur();
+function removeFocus(evt) {
+  evt.target.blur();
 }
 
+//Sets the text about the sum of consecutive wins
 function updateNumOfWins() {
   if (player.numOFWins == 1) {
     numOFWinsMessage.textContent = `${player.numOFWins} time!`;
@@ -87,22 +87,23 @@ function updateNumOfWins() {
   }
 }
 
+//Sets the player.sprite value according to the selected character
 function updateCharacter() {
   player.value = e.options[e.selectedIndex].value;
   player.sprite = `images/${player.value}.png`;
 }
 
+//Handles animations
 function animations() {
   let getnumOFWinsMessage = document.querySelector("#numOFWinsMessage");
   let getYayContainer = document.querySelector("#yayContainer");
   let getYayMessage = getYayContainer.querySelector("i");
-  yayContainer.style.display = 'block';
+  yayContainer.style.display = "block";
   getYayMessage.classList.add("animated", "bounce");
   getnumOFWinsMessage.classList.add("animated", "flash");
   setTimeout(function() {
-    yayContainer.style.display = 'none';
+    yayContainer.style.display = "none";
     getYayMessage.classList.remove("animated", "bounce");
     getnumOFWinsMessage.classList.remove("animated", "flash");
   }, 700);
-
 }
