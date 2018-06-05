@@ -14,15 +14,17 @@ function loadContainer() {
 
   let numOFWinsMessage = document.createElement("p");
   numOFWinsMessage.setAttribute("id", "numOFWinsMessage");
+  numOFWinsMessage.setAttribute("class", "");
   numOFWinsMessage.textContent = `${player.numOFWins} consecutive times!`;
   sideContainer.appendChild(numOFWinsMessage);
 
-  let yayMessage = document.createElement("p");
+  let yayMessage = document.createElement("i");
   let yayContainer = document.createElement("div");
-  yayMessage.setAttribute("class", "yay");
+  yayMessage.setAttribute("class", "fas fa-angle-double-up");
   yayContainer.setAttribute("id", "yayContainer");
-  yayMessage.textContent = `Yay!`;
+  // yayMessage.textContent = `Yay!`;
   yayContainer.appendChild(yayMessage);
+  yayContainer.style.display = 'none';
   sideContainer.appendChild(yayContainer);
 
   let choosePlayerMessage = document.createElement("p");
@@ -64,7 +66,6 @@ function loadContainer() {
   option5.setAttribute("class", "option");
   option5.textContent = `Princess Girl`;
   dropMenu.appendChild(option5);
-
 }
 
 window.addEventListener('DOMContentLoaded', loadContainer());
@@ -91,12 +92,17 @@ function updateCharacter() {
   player.sprite = `images/${player.value}.png`;
 }
 
-function yay() {
+function animations() {
+  let getnumOFWinsMessage = document.querySelector("#numOFWinsMessage");
   let getYayContainer = document.querySelector("#yayContainer");
-  let getYayMessage = getYayContainer.querySelector("p");
+  let getYayMessage = getYayContainer.querySelector("i");
+  yayContainer.style.display = 'block';
   getYayMessage.classList.add("animated", "bounce");
+  getnumOFWinsMessage.classList.add("animated", "flash");
   setTimeout(function() {
+    yayContainer.style.display = 'none';
     getYayMessage.classList.remove("animated", "bounce");
+    getnumOFWinsMessage.classList.remove("animated", "flash");
   }, 700);
 
 }

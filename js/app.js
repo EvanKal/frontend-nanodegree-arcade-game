@@ -98,7 +98,7 @@ Player.prototype.update = function () {
   if (this.y == -10) {
     updateWin();
     resetPosition();
-    yay();
+    animations();
   }
 
 };
