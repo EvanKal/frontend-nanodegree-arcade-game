@@ -75,8 +75,8 @@ var Player = function({x=200, y=405, value="char-princess-girl"}={}) {
   this.widthSpace;
   this.heightSpace;
   this.numOFWins = 0;
-  this.previousScore = 0;
-  this.checkWin = false;
+  // this.previousScore = 0;
+  // this.checkWin = false;
 };
 
 Player.prototype.update = function () {
@@ -86,18 +86,19 @@ Player.prototype.update = function () {
   const resetPosition = () => {
   this.x = 200;
   this.y = 405;
-  this.previousScore = this.numOFWins;
+  // this.previousScore = this.numOFWins;
   }
 
   const updateWin = () => {
-  if (this.numOFWins == this.previousScore) {
+  // if (this.numOFWins == this.previousScore) {
     ++this.numOFWins;
+  // }
   }
-}
 
   if (this.y == -10) {
     updateWin();
     resetPosition();
+    yay();
   }
 
 };

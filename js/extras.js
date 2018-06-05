@@ -18,9 +18,12 @@ function loadContainer() {
   sideContainer.appendChild(numOFWinsMessage);
 
   let yayMessage = document.createElement("p");
-  choosePlayerMessage.setAttribute("id", "choosePlayerMessage");
-  choosePlayerMessage.textContent = `Yay!`;
-  sideContainer.appendChild(winsMessage);  
+  let yayContainer = document.createElement("div");
+  yayMessage.setAttribute("class", "yay");
+  yayContainer.setAttribute("id", "yayContainer");
+  yayMessage.textContent = `Yay!`;
+  yayContainer.appendChild(yayMessage);
+  sideContainer.appendChild(yayContainer);
 
   let choosePlayerMessage = document.createElement("p");
   choosePlayerMessage.setAttribute("id", "choosePlayerMessage");
@@ -86,4 +89,14 @@ function updateNumOfWins() {
 function updateCharacter() {
   player.value = e.options[e.selectedIndex].value;
   player.sprite = `images/${player.value}.png`;
+}
+
+function yay() {
+  let getYayContainer = document.querySelector("#yayContainer");
+  let getYayMessage = getYayContainer.querySelector("p");
+  getYayMessage.classList.add("animated", "bounce");
+  setTimeout(function() {
+    getYayMessage.classList.remove("animated", "bounce");
+  }, 700);
+
 }
