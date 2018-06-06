@@ -41,16 +41,14 @@ Enemy.prototype.update = function(dt) {
       this.widthSpace - 50 >= player.x &&
       this.widthSpace - 50 < player.widthSpace
     ) {
-      player.x = 200;
-      player.y = 405;
+      player.resetPosition();
       player.numOFWins = 0;
     } else if (
       this.y == player.y &&
       this.x + 50 >= player.x &&
       this.x + 50 < player.widthSpace
     ) {
-      player.x = 200;
-      player.y = 405;
+      player.resetPosition();
       player.numOFWins = 0;
     }
   } else {
@@ -78,28 +76,21 @@ var Player = function({ x = 200, y = 405, value = "char-princess-girl" } = {}) {
   this.widthSpace;
   this.heightSpace;
   this.numOFWins = 0;
-  // this.previousScore = 0;
-  // this.checkWin = false;
 };
+
+Player.prototype.resetPosition = function() {
+  this.x = 200;
+  this.y = 405;
+}
 
 Player.prototype.update = function() {
   this.widthSpace = this.x + 101;
 
-  // Arrow function to set "this" properly to the player
-  //Resets character to original position
-  const resetPosition = () => {
-    this.x = 200;
-    this.y = 405;
-  };
-
-  const updateWin = () => {
-    ++this.numOFWins;
-  };
-
   //Checks if player reaches a water tile
   if (this.y == -10) {
-    updateWin();
-    resetPosition();
+    ++this.numOFWins;
+    // updateWin();
+    this.resetPosition();
     animations();
   }
 };
@@ -109,25 +100,21 @@ Player.prototype.render = function() {
 };
 
 Player.prototype.handleInput = function(key) {
-  //Moves the player to specified positions one tile at a time 
+  //Moves the player to specified positions one tile at a time
   if (key == "up" && this.y > -10) {
     this.y = this.y - 83;
-    console.log(`${this.x}, ${this.y}`);
   }
 
   if (key == "down" && this.y < 405) {
     this.y = this.y + 83;
-    console.log(`${this.x}, ${this.y}`);
   }
 
   if (key == "left" && this.x > 0) {
     this.x = this.x - 100;
-    console.log(`${this.x}, ${this.y}`);
   }
 
   if (key == "right" && this.x < 400) {
     this.x = this.x + 100;
-    console.log(`${this.x}, ${this.y}`);
   }
 };
 
